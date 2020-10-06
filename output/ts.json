@@ -1,0 +1,263 @@
+{
+  "action": {
+    "prefix": "action",
+    "body": [
+      "import { toast } from 'react-toastify';",
+      "import { call, put } from 'redux-saga/effects';",
+      "",
+      "import { networkActions } from 'actions/network.actions';",
+      "import { $2, $2_SUCCESS, $2_FAILURE } from 'constants/action-types';",
+      "import { $3Services } from 'services/$3.services';",
+      "",
+      "/*",
+      "    TODO:",
+      "        - Fill names:",
+      "            1: actionGenerator",
+      "            2: ACTION_TAG",
+      "            3: resource",
+      "            4: ActionTag",
+      "        - Specify any types",
+      " */",
+      "",
+      "export function $1(payload: I$4PayloadType): I$4ActionType {",
+      "  return { type: $2, payload };",
+      "}",
+      "export function $1Success(",
+      "  payload: I$4SuccessPayloadType",
+      "): I$4SuccessActionType {",
+      "  return { type: $2_SUCCESS, payload };",
+      "}",
+      "export function $1Failure(): I$4FailureActionType {",
+      "  return { type: $2_FAILURE };",
+      "}",
+      "",
+      "export function* $1Worker(action: I$4ActionType) {",
+      "  try {",
+      "    const requestOptions = yield call($3Services.$1, action.payload);",
+      "    const response = yield call(",
+      "      networkActions.makeAuthenticatedRequest,",
+      "      requestOptions",
+      "    );",
+      "    yield put($1Success(response));",
+      "  } catch (error) {",
+      "    yield put($1Failure());",
+      "  }",
+      "}",
+      "export function* $1SuccessWorker(action: I$4FailureActionType) {",
+      "  toast.success(`Success!`);",
+      "}",
+      "export function* $1FailureWorker() {",
+      "  toast.error(`Failure!`);",
+      "}",
+      "",
+      "export interface I$4ActionType {",
+      "  type: typeof $2;",
+      "  payload: I$4PayloadType;",
+      "}",
+      "export interface I$4PayloadType {",
+      "  key: any;",
+      "}",
+      "export interface I$4SuccessActionType {",
+      "  type: typeof $2_SUCCESS;",
+      "  payload: any;",
+      "}",
+      "export interface I$4SuccessPayloadType {",
+      "  key: any;",
+      "}",
+      "export interface I$4FailureActionType {",
+      "  type: typeof $2_FAILURE;",
+      "}",
+      ""
+    ]
+  },
+  "actions": {
+    "prefix": "actions",
+    "body": [
+      "import { takeLeading } from 'redux-saga/effects';",
+      "",
+      "import { GET_$3 } from 'constants/action-types';",
+      "import { clear$2 } from 'actions/$1/clear$2.action';",
+      "import { get$2, get$2Worker } from 'actions/$1/get$2.action';",
+      "",
+      "/*",
+      "    TODO:",
+      "        - Fill names:",
+      "            1: resource",
+      "            2: Resource",
+      "            3: RESOURCE",
+      " */",
+      "",
+      "export const $1Actions = { clear$2, get$2 };",
+      "",
+      "export const $1Sagas = function* () {",
+      "  yield takeLeading(GET_$3, get$2Worker);",
+      "};",
+      ""
+    ]
+  },
+  "break": {
+    "prefix": "break",
+    "body": ["cy.contains('break', {timeout:1});"]
+  },
+  "funca": {
+    "prefix": "funca",
+    "body": ["($1) => {", "  $2;", "};", ""]
+  },
+  "getState": {
+    "prefix": "getState",
+    "body": ["const store: IRootStateType = rootStore.getState();", ""]
+  },
+  "group": {
+    "prefix": "group",
+    "body": [
+      "console.group('$1');",
+      "console.group('$2:', $2);",
+      "console.table($2);",
+      "console.groupEnd();",
+      "console.log('$3', $3);",
+      "console.groupEnd();",
+      ""
+    ]
+  },
+  "home": {
+    "prefix": "home",
+    "body": ["cy.visit(testHome);", ""]
+  },
+  "it": {
+    "prefix": "it",
+    "body": ["it('$1', () => {", "  $2;", "});", ""]
+  },
+  "location": {
+    "prefix": "location",
+    "body": ["cy.location('pathname').should('include', '$1');", ""]
+  },
+  "reducer": {
+    "prefix": "reducer",
+    "body": [
+      "import { defaultState } from 'stores/default-state';",
+      "",
+      "/*",
+      "    TODO:",
+      "        - Fill names:",
+      "            1: actionGenerator",
+      "            2: ActionTag",
+      "            3: Default state location",
+      "            4: Default state type",
+      "        - Enter types",
+      " */",
+      "",
+      "export function $1Success(action: I$2SuccessActionType): $4 {",
+      "  return action.payload;",
+      "}",
+      "export function $1Failure() {",
+      "  return defaultState.$3;",
+      "}",
+      ""
+    ]
+  },
+  "reducers": {
+    "prefix": "reducers",
+    "body": [
+      "import { Reducer } from 'redux';",
+      "",
+      "import { defaultState } from 'stores/default-state';",
+      "import { CLEAR_$3, GET_$3_SUCCESS } from 'constants/action-types';",
+      "import { IClear$2ActionType } from 'actions/$1/clear$2.action';",
+      "import { IGet$2SuccessActionType } from 'actions/$1/get$2.action';",
+      "import { get$2Success } from 'reducers/$1/get$2.reducer';",
+      "",
+      "/*",
+      "    TODO:",
+      "        - Fill names:",
+      "            1: resource",
+      "            2: ResourceActionTypes",
+      "            3: CLEAR_RESOURCE",
+      " */",
+      "",
+      "export const $1: Reducer<I$2StoreType | undefined> = (",
+      "  state = defaultState.$1,",
+      "  action: $2ActionTypes",
+      "): I$2StoreType => {",
+      "  switch (action.type) {",
+      "    case CLEAR_$3:",
+      "      return defaultState.$1;",
+      "    case GET_$3_SUCCESS:",
+      "      return get$2Success(action);",
+      "    default:",
+      "      return state;",
+      "  }",
+      "};",
+      "",
+      "export type $2ActionTypes = IClear$2ActionType | IGet$2SuccessActionType;",
+      ""
+    ]
+  },
+  "select": {
+    "prefix": "select",
+    "body": [
+      "const { $2 } = yield select((state: IRootStateType) => state.$1);",
+      ""
+    ]
+  },
+  "service": {
+    "prefix": "service",
+    "body": [
+      "/*",
+      "    TODO:",
+      "        - Fill names:",
+      "            1: actionGenerator",
+      "            2: ActionTag",
+      "            3: Endpoint",
+      "            4: Method",
+      " */",
+      "",
+      "export const $1 = (",
+      "  requestBody: I$2PayloadType",
+      "): IAuthenticatedRequestDefinition => ({",
+      "  body: requestBody,",
+      "  requestOptions: {",
+      "    method: '$4',",
+      "    // headers: { 'Content-Type': 'application/json' },",
+      "  },",
+      "  requestUrl: '$3',",
+      "});",
+      ""
+    ]
+  },
+  "services": {
+    "prefix": "services",
+    "body": [
+      "import { get$2 } from 'services/$1/get$2.service';",
+      "",
+      "/*",
+      "    TODO:",
+      "        - Fill names:",
+      "            1: resource",
+      "            2: Resource",
+      " */",
+      "",
+      "export const $1Services = {",
+      "  get$2,",
+      "};",
+      ""
+    ]
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "describe('$1', () => {",
+      "  const testHome = '/';",
+      "",
+      "  beforeEach(() => {",
+      "    cy.login({ visit: testHome });",
+      "  });",
+      "",
+      "  it('Has a page', () => {",
+      "    cy.visit(testHome);",
+      "    cy.contains('break', { timeout: 1 });",
+      "  });",
+      "});",
+      ""
+    ]
+  }
+}
